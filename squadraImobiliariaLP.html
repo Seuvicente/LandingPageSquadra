@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Squadra Imobiliária - Cuidamos bem do seu imóvel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* Estilos Adicionais */
+      html {
+        scroll-behavior: smooth; /* Habilita rolagem suave globalmente */
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden; /* Prevenir scroll horizontal causado por AOS */
+      }
+      /* Estilo para esconder a barra de rolagem enquanto o menu mobile está aberto */
+      .body-no-scroll {
+        overflow: hidden;
+      }
+      /* Cores da Marca (Aproximadas) */
+      :root {
+        --brand-dark: #1a202c; /* Cinza muito escuro (quase preto) */
+        --brand-teal: #2ec4b6; /* Verde-água/Turquesa do logo */
+        --brand-light: #ffffff; /* Branco */
+        --brand-gray: #f7fafc; /* Cinza claro para fundos alternativos */
+      }
+      /* Aplicando cores como classes utilitárias */
+      .bg-brand-dark {
+        background-color: var(--brand-dark);
+      }
+      .bg-brand-teal {
+        background-color: var(--brand-teal);
+      }
+      .bg-brand-light {
+        background-color: var(--brand-light);
+      }
+      .bg-brand-gray {
+        background-color: var(--brand-gray);
+      }
+      .text-brand-dark {
+        color: var(--brand-dark);
+      }
+      .text-brand-teal {
+        color: var(--brand-teal);
+      }
+      .text-brand-light {
+        color: var(--brand-light);
+      }
+      .border-brand-teal {
+        border-color: var(--brand-teal);
+      }
+      .hover\:bg-brand-teal-dark:hover {
+        background-color: #25a197;
+      } /* Tom mais escuro para hover */
+      .hover\:text-brand-teal:hover {
+        color: var(--brand-teal);
+      }
+      .hover\:text-gray-300:hover {
+        color: #d1d5db;
+      } /* Cinza claro para hover em fundo escuro */
+
+      /* Estilos para os botões de navegação do Swiper */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: var(--brand-teal);
+        background-color: rgba(26, 32, 44, 0.7);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        transition: background-color 0.3s ease;
+      }
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background-color: rgba(45, 55, 72, 0.9);
+      }
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      /* Ajuste para posicionar botões fora do container principal em telas maiores */
+      @media (min-width: 768px) {
+        .swiper-button-next {
+          right: -15px;
+        }
+        .swiper-button-prev {
+          left: -15px;
+        }
+      }
+      /* Garante que o carrossel não ultrapasse a largura do container */
+      .swiper-container {
+        width: 100%;
+        overflow: hidden;
+        padding-left: 5px;
+        padding-right: 5px;
+        /* Altura será definida por classe Tailwind no HTML */
+      }
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cobre o espaço do slide, pode cortar partes da imagem */
+        transition: transform 0.3s ease; /* Adiciona transição para hover */
+      }
+      .swiper-slide a:hover img {
+        transform: scale(1.05); /* Efeito de zoom sutil no hover do link */
+      }
+      /* Define a proporção para os slides do carrossel - Removido aspect-ratio */
+      .swiper-slide {
+        height: 100%; /* Garante que o slide preencha a altura do container */
+      }
+
+      /* Estilos para a seção de depoimentos (Refinado) */
+      .testimonial-card {
+        background-color: var(--brand-light);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        position: relative;
+        padding-top: 2.5rem;
+      }
+      .testimonial-quote-icon {
+        position: absolute;
+        top: 1rem;
+        left: 1.5rem;
+        font-size: 1.5rem;
+        color: var(--brand-teal);
+        opacity: 0.5;
+      }
+      .testimonial-quote {
+        font-style: italic;
+        color: #4a5568;
+        margin-bottom: 1rem;
+      }
+      .testimonial-author {
+        font-weight: 600;
+        color: var(--brand-dark);
+      }
+      .testimonial-role {
+        font-size: 0.875rem;
+        color: #718096;
+      }
+
+      /* Estilos para a Seção de Números */
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--brand-teal);
+        line-height: 1;
+      }
+      .stat-label {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        color: #a0aec0;
+      }
+    </style>
+  </head>
+  <body class="bg-brand-gray">
+    <header class="bg-brand-dark shadow-md sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-6 h-16 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="block">
+          <img
+            src="./imagens/logoSquadraBgTrasnparent-removebg-preview.png"
+            alt="Logo Squadra Imobiliária"
+            class="h-24 w-auto"
+            onerror="this.onerror=null; this.src='https://placehold.co/150x50/1A202C/ffffff?text=Squadra+Logo';"
+          />
+        </a>
+
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-brand-light focus:outline-none"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="hidden md:flex space-x-4">
+          <a
+            href="#sobre"
+            class="text-brand-light hover:text-brand-teal px-3 py-2 rounded-md text-sm font-medium"
+            >Sobre</a
+          >
+          <a
+            href="#diferenciais"
+            class="text-brand-light hover:text-brand-teal px-3 py-2 rounded-md text-sm font-medium"
+            >Diferenciais</a
+          >
+          <a
+            href="#servicos"
+            class="text-brand-light hover:text-brand-teal px-3 py-2 rounded-md text-sm font-medium"
+            >Serviços</a
+          >
+          <a
+            href="#depoimentos"
+            class="text-brand-light hover:text-brand-teal px-3 py-2 rounded-md text-sm font-medium"
+            >Depoimentos</a
+          >
+          <a
+            href="#contato"
+            class="text-brand-light hover:text-brand-teal px-3 py-2 rounded-md text-sm font-medium"
+            >Contato</a
+          >
+        </div>
+      </nav>
+
+      <div
+        id="mobile-menu"
+        class="md:hidden hidden bg-brand-dark border-t border-gray-700"
+      >
+        <a
+          href="#sobre"
+          class="block text-brand-light hover:bg-gray-700 px-6 py-3 text-sm font-medium"
+          >Sobre</a
+        >
+        <a
+          href="#diferenciais"
+          class="block text-brand-light hover:bg-gray-700 px-6 py-3 text-sm font-medium"
+          >Diferenciais</a
+        >
+        <a
+          href="#servicos"
+          class="block text-brand-light hover:bg-gray-700 px-6 py-3 text-sm font-medium"
+          >Serviços</a
+        >
+        <a
+          href="#depoimentos"
+          class="block text-brand-light hover:bg-gray-700 px-6 py-3 text-sm font-medium"
+          >Depoimentos</a
+        >
+        <a
+          href="#contato"
+          class="block text-brand-light hover:bg-gray-700 px-6 py-3 text-sm font-medium"
+          >Contato</a
+        >
+      </div>
+    </header>
+
+    <section class="bg-brand-light py-16 md:py-24">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-8 md:gap-12"
+        data-aos="fade-up"
+      >
+        <div class="md:w-1/2 text-center md:text-left order-2 md:order-1">
+          <h1
+            class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-dark mb-6"
+          >
+            Proprietário, deixe seu imóvel com quem vai cuidar bem dele.
+          </h1>
+          <p class="text-base sm:text-lg text-gray-700 mb-8">
+            Na Squadra Imobiliária, combinamos tecnologia e atendimento
+            personalizado para garantir a melhor experiência na locação do seu
+            patrimônio.
+          </p>
+          <a
+            href="#contato-form"
+            class="bg-brand-teal hover:bg-brand-teal-dark text-brand-light font-bold py-3 px-8 rounded-lg text-lg transition duration-300 inline-block"
+          >
+            Quero meu imóvel alugado
+          </a>
+        </div>
+        <div class="md:w-1/2 order-1 md:order-2">
+          <img
+            src="./imagens/colaboradoraAcenando.png"
+            alt="[Imagem de Atendimento Personalizado]"
+            class="rounded-lg shadow-lg w-full h-auto max-w-md mx-auto md:max-w-full"
+            onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Erro+ao+carregar+imagem';"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="diferenciais"
+      class="py-16 bg-brand-dark text-brand-light"
+      data-aos="fade-up"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-12">
+          Para você, a Squadra
+          <span class="font-extrabold text-brand-teal">facilita</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div
+            class="bg-gray-800 rounded-lg shadow-md relative overflow-hidden min-h-[200px] flex flex-col justify-between"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="p-6 pb-20">
+              <p>
+                Processos rigorosos, vistoria completa e segurança jurídica
+                robusta para proteger seu patrimônio.
+              </p>
+            </div>
+            <h3
+              class="absolute bottom-0 left-0 right-0 p-4 bg-brand-light text-brand-dark text-2xl font-semibold"
+            >
+              + Segurança
+            </h3>
+          </div>
+          <div
+            class="bg-gray-800 rounded-lg shadow-md relative overflow-hidden min-h-[200px] flex flex-col justify-between"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="p-6 pb-20">
+              <p>
+                Repasse automatizado em 3 dias após o pagamento. Ampla
+                divulgação para alugar mais rápido.
+              </p>
+            </div>
+            <h3
+              class="absolute bottom-0 left-0 right-0 p-4 bg-brand-light text-brand-dark text-2xl font-semibold"
+            >
+              + Rapidez
+            </h3>
+          </div>
+          <div
+            class="bg-gray-800 rounded-lg shadow-md relative overflow-hidden min-h-[200px] flex flex-col justify-between"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="p-6 pb-20">
+              <p>
+                Plataforma online para acompanhamento, assinatura digital e
+                gestão completa dos encargos.
+              </p>
+            </div>
+            <h3
+              class="absolute bottom-0 left-0 right-0 p-4 bg-brand-light text-brand-dark text-2xl font-semibold"
+            >
+              + Tecnologia
+            </h3>
+          </div>
+        </div>
+
+        <div
+          class="swiper-container relative h-96"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <div class="swiper-wrapper">
+            <div class="swiper-slide rounded-lg overflow-hidden">
+              <a
+                href="https://ce.olx.com.br/fortaleza-e-regiao/imoveis/oportunidade-no-meireles-flat-para-locacao-1399077132?lis=ad_card_user_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full h-full"
+              >
+                <img
+                  src="https://img.olx.com.br/images/74/744599632073019.webp"
+                  alt="[Imagem de Studio]"
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x384/cccccc/ffffff?text=Erro';"
+                />
+              </a>
+            </div>
+            <div class="swiper-slide rounded-lg overflow-hidden">
+              <a
+                href="https://ce.olx.com.br/fortaleza-e-regiao/comercio-e-industria/galpao-comercial-com-4-700m-ampla-estrutura-e-estacionamento-privativo-regiao-sul-de-fo-1400342461?lis=ad_card_user_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full h-full"
+              >
+                <img
+                  src="https://img.olx.com.br/images/21/211597763103705.webp"
+                  alt="[Imagem de Galpão Comercial]"
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x384/cccccc/ffffff?text=Erro';"
+                />
+              </a>
+            </div>
+            <div class="swiper-slide rounded-lg overflow-hidden">
+              <a
+                href="https://ce.olx.com.br/fortaleza-e-regiao/imoveis/imovel-para-venda-possui-259-metros-quadrados-com-4-quartos-em-cidade-alpha-eusebio-ce-1399768740?lis=ad_card_user_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full h-full"
+              >
+                <img
+                  src="https://img.olx.com.br/images/94/945524751231486.webp"
+                  alt="[Imagem de Casa Cidade Alpha]"
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x384/cccccc/ffffff?text=Erro';"
+                />
+              </a>
+            </div>
+            <div class="swiper-slide rounded-lg overflow-hidden">
+              <a
+                href="https://ce.olx.com.br/fortaleza-e-regiao/imoveis/casa-duplex-em-condominio-fechado-cambeba-230m-para-venda-ou-locacao-1398288462?lis=ad_card_user_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full h-full"
+              >
+                <img
+                  src="https://img.olx.com.br/images/53/532571759948703.webp"
+                  alt="[Imagem de Casa Duplex Condominio]"
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x384/cccccc/ffffff?text=Erro';"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="py-16 bg-brand-light" data-aos="fade-up">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div class="md:w-1/2" data-aos="fade-right" data-aos-delay="100">
+            <img
+              src="./imagens/equipe_squadra.jpeg"
+              alt="[Imagem da Equipe Squadra Imobiliária]"
+              class="rounded-lg shadow-lg w-full h-auto max-w-md mx-auto md:max-w-full"
+              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Erro+ao+carregar+imagem';"
+            />
+          </div>
+          <div
+            class="md:w-1/2 text-gray-700 text-center md:text-left"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
+            <h2 class="text-3xl font-bold text-brand-dark mb-6">
+              Nossa História de Excelência
+            </h2>
+            <p class="mb-4 text-base sm:text-lg">
+              A Squadra Imobiliária nasceu em 2019 da visão inovadora de
+              Genefrance Carvalho e Jevoan Lima, que trouxeram a cultura de
+              excelência da Starta Engenharia para o mercado imobiliário.
+            </p>
+            <p class="mb-4 text-base sm:text-lg">
+              Nosso objetivo é único: entregar uma experiência excepcional,
+              focada na satisfação do cliente, com inovação e organização.
+            </p>
+            <p class="text-base sm:text-lg">
+              Cuidamos de cada detalhe para garantir segurança jurídica e
+              divulgação impecável do seu imóvel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="numeros"
+      class="py-16 bg-brand-dark text-brand-light"
+      data-aos="fade-up"
+    >
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Resultados que <span class="text-brand-teal">Comprovam</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div data-aos="fade-up" data-aos-delay="100">
+            <p class="stat-number">97%</p>
+            <p class="stat-label">Satisfação dos Clientes</p>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <p class="stat-number">100+</p>
+            <p class="stat-label">Imóveis Administrados</p>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="300">
+            <p class="stat-number">3 dias</p>
+            <p class="stat-label">Repasse Médio do Aluguel</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos" class="py-16 bg-brand-gray" data-aos="fade-up">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-brand-dark mb-12">
+          Serviços Completos para Você
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="bg-brand-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <i
+              class="fas fa-hand-holding-dollar text-brand-teal text-4xl mb-4"
+            ></i>
+            <h3 class="text-xl font-semibold text-brand-dark mb-3">
+              Repasse Automatizado
+            </h3>
+            <p class="text-gray-600">
+              Receba o aluguel em 3 dias após o pagamento do boleto, de forma
+              automática e segura.
+            </p>
+          </div>
+          <div
+            class="bg-brand-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <i class="fas fa-clipboard-check text-brand-teal text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-brand-dark mb-3">
+              Avaliação Criteriosa
+            </h3>
+            <p class="text-gray-600">
+              Análise rigorosa do inquilino e do valor de mercado para negócios
+              lucrativos.
+            </p>
+          </div>
+          <div
+            class="bg-brand-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <i class="fas fa-list-check text-brand-teal text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-brand-dark mb-3">
+              Vistoria Completa
+            </h3>
+            <p class="text-gray-600">
+              Garantia de preservação do seu imóvel do início ao fim do
+              contrato.
+            </p>
+          </div>
+          <div
+            class="bg-brand-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <i class="fas fa-bullhorn text-brand-teal text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-brand-dark mb-3">
+              Ampla Divulgação
+            </h3>
+            <p class="text-gray-600">
+              Presença nos principais portais (Zap Imóveis, Imóvel Web) e em
+              nosso site.
+            </p>
+          </div>
+          <div
+            class="bg-brand-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <i class="fas fa-file-contract text-brand-teal text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-brand-dark mb-3">
+              Gestão Completa da Locação
+            </h3>
+            <p class="text-gray-600">
+              Acompanhamento de condomínio, IPTU e taxa do lixo.
+            </p>
+          </div>
+          <div
+            class="bg-brand-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <i class="fas fa-gavel text-brand-teal text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-brand-dark mb-3">
+              Segurança Jurídica e Suporte
+            </h3>
+            <p class="text-gray-600">
+              Assessoria jurídica e cobrança especializada sem custos adicionais
+              para você.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos" class="py-16 bg-brand-light" data-aos="fade-up">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-brand-dark mb-12">
+          O que nossos clientes dizem
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-quote-left testimonial-quote-icon"></i>
+            <p class="testimonial-quote">
+              "A Squadra cuidou de tudo com muita agilidade e profissionalismo.
+              Alugaram meu apartamento rapidamente e o repasse é sempre pontual.
+              Recomendo!"
+            </p>
+            <p class="testimonial-author">Maria Silva</p>
+            <p class="testimonial-role">Proprietária</p>
+          </div>
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-quote-left testimonial-quote-icon"></i>
+            <p class="testimonial-quote">
+              "Desde que deixei meu imóvel com a Squadra, não tive mais dor de
+              cabeça. A comunicação é excelente e sinto meu patrimônio seguro."
+            </p>
+            <p class="testimonial-author">João Pereira</p>
+            <p class="testimonial-role">Proprietário</p>
+          </div>
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-quote-left testimonial-quote-icon"></i>
+            <p class="testimonial-quote">
+              "Tecnologia e atendimento de primeira. A plataforma online
+              facilita muito o acompanhamento. Estou muito satisfeito com os
+              serviços."
+            </p>
+            <p class="testimonial-author">Carlos Andrade</p>
+            <p class="testimonial-role">Proprietário</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contato"
+      class="py-16 bg-brand-teal text-brand-dark"
+      data-aos="fade-up"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Pronto para alugar seu imóvel com tranquilidade?
+        </h2>
+        <p class="text-lg mb-10 max-w-2xl mx-auto">
+          Fale com nossos especialistas ou visite nosso escritório.
+        </p>
+
+        <div
+          class="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12"
+        >
+          <div
+            id="contato-form"
+            class="w-full md:w-1/2 lg:w-2/5"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
+            <form
+              class="bg-brand-light p-6 sm:p-8 rounded-lg shadow-lg space-y-4 h-full flex flex-col justify-between"
+            >
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-brand-dark mb-6 text-center"
+                >
+                  Deixe seu contato
+                </h3>
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700 text-left"
+                    >Nome</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Seu nome completo"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
+                  />
+                </div>
+                <div class="mt-4">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 text-left"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="seuemail@exemplo.com"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
+                  />
+                </div>
+                <div class="mt-4">
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 text-left"
+                    >Telefone</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="(XX) XXXXX-XXXX"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
+                  />
+                </div>
+                <div class="mt-4">
+                  <label
+                    for="message"
+                    class="block text-sm font-medium text-gray-700 text-left"
+                    >Mensagem (Opcional)</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="3"
+                    placeholder="Fale um pouco sobre seu imóvel ou sua necessidade"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="text-center pt-4">
+                <button
+                  type="submit"
+                  class="w-full bg-brand-dark hover:bg-gray-700 text-brand-light font-bold py-3 px-6 rounded-lg transition duration-300 text-lg"
+                >
+                  Enviar Contato
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div
+            class="w-full md:w-auto flex flex-col items-center justify-center text-center"
+            data-aos="fade-left"
+            data-aos-delay="100"
+          >
+            <h3 class="text-2xl font-semibold mb-4">Ou venha tomar um café!</h3>
+            <div
+              class="bg-brand-dark text-brand-light p-6 rounded-lg shadow-lg inline-block"
+            >
+              <h4 class="text-xl font-semibold mb-3 text-brand-teal">
+                Nosso Endereço
+              </h4>
+              <p class="text-lg">Rua Osvaldo Cruz, 01, Sala 1701</p>
+              <p class="text-lg mb-4">Meireles, Fortaleza - CE</p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Rua+Osvaldo+Cruz,+1,+Sala+1701,+Meireles,+Fortaleza,+CE"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-brand-light hover:bg-gray-200 text-brand-dark font-bold py-2 px-6 rounded-lg transition duration-300 inline-block"
+              >
+                Ver no Mapa
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-8">
+      <div class="container mx-auto px-6 text-center">
+        <div class="h-24 w-auto mx-auto mb-4">
+          <img
+            src="./imagens/logoSquadraBgTrasnparent-removebg-preview.png"
+            alt="Logo Squadra Imobiliária Rodapé"
+            class="h-full w-auto mx-auto"
+            onerror="this.onerror=null; this.src='https://placehold.co/120x40/1A202C/ffffff?text=Squadra';"
+          />
+        </div>
+        <p>
+          © <span id="currentYear"></span> Squadra Imobiliária. Todos os
+          direitos reservados.
+        </p>
+        <p class="text-sm mt-2">
+          Inovação e segurança na administração do seu imóvel.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      // Script para Menu Mobile
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const body = document.body;
+
+      mobileMenuButton.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.toggle("hidden");
+        // Adiciona ou remove a classe que impede o scroll no body
+        body.classList.toggle("body-no-scroll", !isHidden);
+        // Altera o ícone do botão (hambúrguer/X)
+        mobileMenuButton.innerHTML = isHidden
+          ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>` // Ícone Hambúrguer
+          : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`; // Ícone X
+      });
+
+      // Fecha o menu mobile ao clicar em um link
+      mobileMenu.addEventListener("click", (event) => {
+        if (event.target.tagName === "A") {
+          mobileMenu.classList.add("hidden");
+          body.classList.remove("body-no-scroll");
+          // Restaura o ícone de hambúrguer
+          mobileMenuButton.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+        }
+      });
+
+      // Script para atualizar o ano no rodapé
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      // Script para rolagem suave e ajuste de offset do header fixo
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href");
+
+          // Verifica se é um link interno válido (começa com # e tem mais caracteres)
+          // Não trata mais #top de forma especial, pois o link do logo é href="#"
+          if (targetId && targetId.startsWith("#") && targetId.length > 1) {
+            e.preventDefault(); // Impede o comportamento padrão de salto
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              // Fecha o menu mobile se estiver aberto
+              if (!mobileMenu.classList.contains("hidden")) {
+                mobileMenu.classList.add("hidden");
+                body.classList.remove("body-no-scroll");
+                mobileMenuButton.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+              }
+
+              // Calcula a posição de rolagem considerando a altura do header fixo
+              const headerOffset =
+                document.querySelector("header")?.offsetHeight || 70; // Altura do header ou um valor padrão
+              const elementPosition = targetElement.getBoundingClientRect().top; // Posição relativa à viewport
+              const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset; // Posição final ajustada
+
+              // Rola suavemente para a posição calculada (usando CSS scroll-behavior)
+              window.scrollTo({ top: offsetPosition }); // Apenas define a posição, CSS cuida da animação
+            }
+          } else if (targetId === "#") {
+            // Impede o comportamento padrão para links href="#" que não levam a lugar nenhum
+            e.preventDefault();
+            // Opcional: rolar para o topo ao clicar no logo com href="#"
+            window.scrollTo({ top: 0 });
+          }
+          // Links externos ou outros tipos de links funcionam normalmente
+        });
+      });
+
+      // Script para inicializar o Swiper Carousel e AOS após o carregamento do DOM
+      document.addEventListener("DOMContentLoaded", function () {
+        // Inicialização do Swiper
+        const swiper = new Swiper(".swiper-container", {
+          loop: true, // Navegação infinita
+          slidesPerView: 1.2, // Mostrar 1 slide completo e um pouco do próximo em telas pequenas
+          spaceBetween: 15, // Espaço entre slides
+          centeredSlides: true, // Centralizar o slide ativo em telas pequenas
+          grabCursor: true, // Mostrar cursor de "agarrar"
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          // Breakpoints para diferentes tamanhos de tela
+          breakpoints: {
+            // Quando a largura da janela for >= 640px (sm)
+            640: {
+              slidesPerView: 2.5, // Mostrar 2 slides e meio
+              spaceBetween: 20,
+              centeredSlides: false, // Não centralizar mais
+            },
+            // Quando a largura da janela for >= 1024px (lg)
+            1024: {
+              slidesPerView: 3.5, // Mostrar 3 slides e meio
+              spaceBetween: 30,
+              centeredSlides: false,
+            },
+          },
+          // Adiciona autoplay (opcional)
+          // autoplay: {
+          //   delay: 5000, // Tempo em ms entre transições
+          //   disableOnInteraction: false, // Não parar ao interagir
+          // },
+        });
+
+        // Inicialização do AOS (Animate On Scroll)
+        AOS.init({
+          duration: 800, // Duração da animação em ms
+          once: true, // Animar elementos apenas uma vez
+          offset: 50, // Distância (em px) do elemento à viewport para disparar a animação
+          disable: "mobile", // Opcional: desabilitar animações em dispositivos móveis
+        });
+      });
+
+      // Opcional: Lógica básica para o formulário (apenas exibe um alerta)
+      const contactForm = document.querySelector("#contato-form form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault(); // Impede o envio real do formulário
+          // Simulação de envio - Substitua por sua lógica real (AJAX, etc.)
+          alert("Obrigado pelo seu contato! Em breve retornaremos.");
+          // Limpa o formulário (opcional)
+          // contactForm.reset();
+        });
+      }
+    </script>
+  </body>
+</html>
