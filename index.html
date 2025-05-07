@@ -887,46 +887,68 @@
         });
       });
 
-      const contactForm = document.querySelector("#contato-form form");
-      if (contactForm) {
-        contactForm.addEventListener("submit", function (event) {
-          event.preventDefault();
-          alert("Obrigado pelo seu contato! Em breve retornaremos.");
-        });
-      }
+      // const contactForm = document.querySelector("#contato-form form");
+      // if (contactForm) {
+      //   contactForm.addEventListener("submit", function (event) {
+      //     event.preventDefault();
+      //     alert("Obrigado pelo seu contato! Em breve retornaremos.");
+      //   });
+      // }
     </script>
-
     <script>
-      const form = document.querySelector("form");
+      // Seleciona o formulário específico pelo ID
+      const formToGoogleSheets = document.getElementById("formulario");
+      // Seleciona o botão de submit para feedback visual
+      const submitButton = formToGoogleSheets.querySelector(
+        'button[type="submit"]'
+      );
 
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
+      formToGoogleSheets.addEventListener("submit", async function (e) {
+        e.preventDefault(); // Impede o envio padrão do formulário
+
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Enviando..."; // Feedback para o usuário
 
         const data = {
-          nome: form.name.value,
-          email: form.email.value,
-          telefone: form.phone.value,
-          mensagem: form.message.value,
+          nome: formToGoogleSheets.name.value,
+          email: formToGoogleSheets.email.value,
+          telefone: formToGoogleSheets.phone.value,
+          mensagem: formToGoogleSheets.message.value,
         };
 
-        try {
-          const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbwxpZDVsMbU6mZzvBmgH2VCO5AEk05t7P_6-4-wtCKTX66_EKOd9EuvoFB0iAm0m1l8/exec",
-            {
-              method: "POST",
-              mode: "no-cors", // opcional, evita erros CORS mas sem feedback
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            }
-          );
+        // IMPORTANTE: Substitua PELA_SUA_URL_DO_SCRIPT_DO_GOOGLE_AQUI pela URL do seu script implantado (veja Passo 2)
+        // A URL que você já tem no seu código original é: "https://script.google.com/macros/s/AKfycbwxpZDVsMbU6mZzvBmgH2VCO5AEk05t7P_6-4-wtCKTX66_EKOd9EuvoFB0iAm0m1l8/exec"
+        // Certifique-se que o script NESSA URL está configurado como descrito no Passo 2.
+        const googleScriptURL = "PELA_SUA_URL_DO_SCRIPT_DO_GOOGLE_AQUI";
 
-          alert("Formulário enviado com sucesso!");
-          form.reset();
+        try {
+          const response = await fetch(googleScriptURL, {
+            method: "POST",
+            mode: "no-cors", // Veja a explicação sobre 'no-cors' abaixo
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          // Com 'mode: "no-cors"', não podemos ler a resposta do servidor diretamente aqui.
+          // O alerta de sucesso será exibido se a requisição for enviada sem erro de rede,
+          // mas não garante que os dados foram processados com sucesso pelo script do Google.
+          // A mensagem foi ajustada para refletir isso.
+          alert(
+            "Formulário enviado! Verificaremos os dados na planilha. Em breve retornaremos."
+          );
+          formToGoogleSheets.reset(); // Limpa o formulário
         } catch (error) {
-          alert("Erro ao enviar. Tente novamente.");
-          console.error(error);
+          alert(
+            "Erro ao enviar o formulário. Tente novamente. Detalhes: " +
+              error.message
+          );
+          console.error("Fetch Error:", error);
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText; // Restaura o texto do botão
         }
       });
     </script>
