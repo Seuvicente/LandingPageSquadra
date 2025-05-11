@@ -906,7 +906,7 @@
         });
 
         const googleScriptURL =
-          "https://script.google.com/macros/s/AKfycbx0tYgMaUHNlnOR1Wh0-SeaYcJyjBnhmDXpc0VaKziIv4sh1zucSBnazFHak6cHCmxdmQ/exec";
+          "https://script.google.com/macros/s/AKfycbwWBJnuj308Uz8sSEE5Dqd2kBpyHYAVWKft6rtzZ56lejxvGzhL6_KXYVNecJ9jU3ri/exec";
 
         try {
           const response = await fetch(googleScriptURL, {
@@ -915,7 +915,6 @@
               "Content-Type": "application/json", // Importante para o Apps Script interpretar como JSON
             },
             body: JSON.stringify(data),
-            redirect: "follow", // Segue redirecionamentos (como o 302 do Apps Script)
           });
 
           console.log("Resposta do Fetch:", response); // Log para depuração da resposta completa
