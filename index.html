@@ -911,6 +911,7 @@
         try {
           const response = await fetch(googleScriptURL, {
             method: "POST",
+            mode: "no-cors",
             headers: {
               "Content-Type": "application/json", // Importante para o Apps Script interpretar como JSON
             },
