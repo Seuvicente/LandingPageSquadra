@@ -110,23 +110,21 @@
       .swiper-container {
         width: 100%;
         overflow: hidden;
-        padding-left: 5px;
+        padding-left: 5px; /* Pequeno padding para não cortar sombras ou bordas dos slides */
         padding-right: 5px;
-        /* Altura será definida por classe Tailwind no HTML */
       }
       .swiper-slide img {
         display: block;
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Cobre o espaço do slide, pode cortar partes da imagem */
-        transition: transform 0.3s ease; /* Adiciona transição para hover */
+        object-fit: contain;
+        transition: transform 0.3s ease;
       }
       .swiper-slide a:hover img {
-        transform: scale(1.05); /* Efeito de zoom sutil no hover do link */
+        transform: scale(1.05);
       }
-      /* Define a proporção para os slides do carrossel - Removido aspect-ratio */
       .swiper-slide {
-        height: 100%; /* Garante que o slide preencha a altura do container */
+        height: 100%;
       }
 
       /* Estilos para a seção de depoimentos (Refinado) */
@@ -176,13 +174,13 @@
 
       /* Estilos para mensagens de status do formulário */
       .status-message {
-        margin-top: 1rem; /* Ajustado de 20px para 1rem (Tailwind: mt-4) */
-        padding: 0.75rem; /* Ajustado de 12px para 0.75rem (Tailwind: p-3) */
-        border-radius: 0.25rem; /* Ajustado de 4px para 0.25rem (Tailwind: rounded) */
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
         text-align: center;
         font-weight: bold;
-        display: none; /* Oculto por padrão */
-        font-size: 0.875rem; /* Tailwind: text-sm */
+        display: none;
+        font-size: 0.875rem;
       }
       .status-message.success {
         background-color: #d4edda;
@@ -312,9 +310,8 @@
           <a
             href="#contato-form"
             class="bg-brand-teal hover:bg-brand-teal-dark text-brand-light font-bold py-3 px-8 rounded-lg text-lg transition duration-300 inline-block"
+            >Quero meu imóvel alugado</a
           >
-            Quero meu imóvel alugado
-          </a>
         </div>
         <div class="md:w-1/2 order-1 md:order-2">
           <img
@@ -326,7 +323,6 @@
         </div>
       </div>
     </section>
-
     <section
       id="diferenciais"
       class="py-16 bg-brand-dark text-brand-light"
@@ -390,7 +386,6 @@
             </h3>
           </div>
         </div>
-
         <div
           class="swiper-container relative h-96"
           data-aos="fade-up"
@@ -448,7 +443,6 @@
         </div>
       </div>
     </section>
-
     <section id="sobre" class="py-16 bg-brand-light" data-aos="fade-up">
       <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
@@ -485,7 +479,6 @@
         </div>
       </div>
     </section>
-
     <section
       id="numeros"
       class="py-16 bg-brand-dark text-brand-light"
@@ -511,7 +504,6 @@
         </div>
       </div>
     </section>
-
     <section id="servicos" class="py-16 bg-brand-gray" data-aos="fade-up">
       <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-brand-dark mb-12">
@@ -606,7 +598,6 @@
         </div>
       </div>
     </section>
-
     <section id="depoimentos" class="py-16 bg-brand-light" data-aos="fade-up">
       <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-brand-dark mb-12">
@@ -687,7 +678,7 @@
                   <input
                     type="text"
                     id="name"
-                    name="name"
+                    name="nome"
                     placeholder="Seu nome completo"
                     required
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
@@ -717,7 +708,7 @@
                   <input
                     type="tel"
                     id="phone"
-                    name="phone"
+                    name="telefone"
                     placeholder="(XX) XXXXX-XXXX"
                     required
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
@@ -731,7 +722,7 @@
                   >
                   <textarea
                     id="message"
-                    name="message"
+                    name="mensagem"
                     rows="3"
                     placeholder="Fale um pouco sobre seu imóvel ou sua necessidade"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm text-brand-dark placeholder-gray-400"
@@ -768,7 +759,7 @@
               <p class="text-lg">Rua Osvaldo Cruz, 01, Sala 1701</p>
               <p class="text-lg mb-4">Meireles, Fortaleza - CE</p>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Rua+Osvaldo+Cruz+1+Sala+1701+Meireles+Fortaleza+CE"
+                href="https://www.google.com/maps/place/Av.+Santos+Dumont,+1+-+Sala+1701+-+Aldeota,+Fortaleza+-+CE,+60150-160"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="bg-brand-light hover:bg-gray-200 text-brand-dark font-bold py-2 px-6 rounded-lg transition duration-300 inline-block"
@@ -805,186 +796,176 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-      // Script do Menu Mobile, Ano Atual, Rolagem Suave, Swiper e AOS (existente no seu arquivo)
+      // Script do Menu Mobile, Ano Atual, Rolagem Suave, Swiper e AOS
       const mobileMenuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
       const body = document.body;
 
-      mobileMenuButton.addEventListener("click", () => {
-        const isHidden = mobileMenu.classList.toggle("hidden");
-        body.classList.toggle("body-no-scroll", !isHidden);
-        mobileMenuButton.innerHTML = isHidden
-          ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`
-          : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
-      });
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener("click", () => {
+          const isHidden = mobileMenu.classList.toggle("hidden");
+          body.classList.toggle("body-no-scroll", !isHidden);
+          mobileMenuButton.innerHTML = isHidden
+            ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`
+            : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+        });
 
-      mobileMenu.addEventListener("click", (event) => {
-        if (event.target.tagName === "A") {
-          mobileMenu.classList.add("hidden");
-          body.classList.remove("body-no-scroll");
-          mobileMenuButton.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
-        }
-      });
+        mobileMenu.addEventListener("click", (event) => {
+          if (
+            event.target.tagName === "A" &&
+            event.target.getAttribute("href").startsWith("#")
+          ) {
+            mobileMenu.classList.add("hidden");
+            body.classList.remove("body-no-scroll");
+            mobileMenuButton.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+          }
+        });
+      }
 
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+      const currentYearEl = document.getElementById("currentYear");
+      if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
+      }
 
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const targetId = this.getAttribute("href");
-          if (targetId && targetId.startsWith("#") && targetId.length > 1) {
+          if (targetId && targetId !== "#" && targetId.startsWith("#")) {
             e.preventDefault();
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-              if (!mobileMenu.classList.contains("hidden")) {
+              if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
                 mobileMenu.classList.add("hidden");
                 body.classList.remove("body-no-scroll");
-                mobileMenuButton.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+                if (mobileMenuButton) {
+                  mobileMenuButton.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+                }
               }
               const headerOffset =
-                document.querySelector("header")?.offsetHeight || 64; // 64px é a altura do header (h-16)
+                document.querySelector("header")?.offsetHeight || 64;
               const elementPosition = targetElement.getBoundingClientRect().top;
               const offsetPosition =
                 elementPosition + window.pageYOffset - headerOffset;
-              window.scrollTo({ top: offsetPosition });
+              window.scrollTo({ top: offsetPosition, behavior: "smooth" });
             }
           } else if (targetId === "#") {
             e.preventDefault();
-            window.scrollTo({ top: 0 });
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }
         });
       });
 
       document.addEventListener("DOMContentLoaded", function () {
-        const swiper = new Swiper(".swiper-container", {
-          loop: true,
-          slidesPerView: 1.2,
-          spaceBetween: 15,
-          centeredSlides: true,
-          grabCursor: true,
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          breakpoints: {
-            640: {
-              slidesPerView: 2.5,
-              spaceBetween: 20,
-              centeredSlides: false,
+        if (typeof Swiper !== "undefined") {
+          const swiper = new Swiper(".swiper-container", {
+            loop: true,
+            slidesPerView: 1.2, // Base para mobile
+            spaceBetween: 15,
+            centeredSlides: true, // Centraliza o slide ativo em visualizações menores
+            grabCursor: true,
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
             },
-            1024: {
-              slidesPerView: 3.5,
-              spaceBetween: 30,
-              centeredSlides: false,
+            breakpoints: {
+              // Quando a largura da janela for >= 640px (sm no Tailwind)
+              640: {
+                slidesPerView: 2.2, // Mostra 2 slides e um pouco do terceiro
+                spaceBetween: 20,
+                centeredSlides: true, // Mantém centralizado para melhor visualização com 3 itens
+              },
+              // Quando a largura da janela for >= 1024px (lg no Tailwind)
+              1024: {
+                slidesPerView: 3, // Mostra 3 slides completos
+                spaceBetween: 30,
+                centeredSlides: false, // Não precisa centralizar se todos os 3 estão visíveis
+              },
             },
-          },
-        });
-        AOS.init({ duration: 800, once: true, offset: 50, disable: "mobile" });
+          });
+        }
+        if (typeof AOS !== "undefined") {
+          AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            disable: "mobile",
+          });
+        }
       });
     </script>
 
     <script>
-      const formToGoogleSheets = document.getElementById("formulario");
-      const submitButton = formToGoogleSheets.querySelector(
+      const formPostNoCors = document.getElementById("formulario");
+      const submitButtonPostNoCors = formPostNoCors.querySelector(
         'button[type="submit"]'
       );
-      const statusMessageElement = document.getElementById("formStatusMessage");
+      const statusMessageElementPostNoCors =
+        document.getElementById("formStatusMessage");
 
-      formToGoogleSheets.addEventListener("submit", async function (e) {
+      function showStatusPostNoCors(message, type) {
+        if (statusMessageElementPostNoCors) {
+          statusMessageElementPostNoCors.textContent = message;
+          statusMessageElementPostNoCors.className = "status-message " + type;
+          statusMessageElementPostNoCors.style.display = "block";
+        } else {
+          alert(type.toUpperCase() + ": " + message);
+        }
+      }
+
+      formPostNoCors.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const originalButtonText = submitButton.innerHTML;
-        submitButton.disabled = true;
-        submitButton.innerHTML = "Enviando...";
-        statusMessageElement.style.display = "none";
-        statusMessageElement.textContent = "";
+        const originalButtonText = submitButtonPostNoCors.innerHTML;
+        submitButtonPostNoCors.disabled = true;
+        submitButtonPostNoCors.innerHTML = "Enviando...";
 
-        const formData = new FormData(formToGoogleSheets);
-        const data = {};
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
+        if (statusMessageElementPostNoCors) {
+          statusMessageElementPostNoCors.style.display = "none";
+          statusMessageElementPostNoCors.textContent = "";
+        }
 
+        const data = {
+          nome: formPostNoCors.nome.value,
+          email: formPostNoCors.email.value,
+          telefone: formPostNoCors.telefone.value,
+          mensagem: formPostNoCors.mensagem.value,
+        };
+
+        // ***** IMPORTANTE: SUBSTITUA COM O URL REAL DA SUA IMPLANTAÇÃO DO GOOGLE APPS SCRIPT *****
+        // Este é o URL que você indicou que funcionava para gravar os dados com 'no-cors'
         const googleScriptURL =
-          "https://script.google.com/macros/s/AKfycbwWBJnuj308Uz8sSEE5Dqd2kBpyHYAVWKft6rtzZ56lejxvGzhL6_KXYVNecJ9jU3ri/exec";
+          "https://script.google.com/macros/s/AKfycbyNrSoKqMz0M42FUw6fdIyY_7CO8CeHGHdOb00t7vjafq_CcSASUloI7oIOl2sufPQ_/exec";
+
+        console.log("Enviando para (POST no-cors):", googleScriptURL);
+        console.log("Dados:", JSON.stringify(data));
 
         try {
           const response = await fetch(googleScriptURL, {
             method: "POST",
             mode: "no-cors",
             headers: {
-              "Content-Type": "application/json", // Importante para o Apps Script interpretar como JSON
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
           });
 
-          console.log("Resposta do Fetch:", response); // Log para depuração da resposta completa
-          console.log("Status da Resposta:", response.status); // Log para depuração
-          console.log("Response OK?:", response.ok); // Log para depuração
-          console.log("Tipo de Resposta:", response.type); // Ex: 'basic', 'cors', 'opaque', 'opaqueredirect'
-
-          if (response.ok) {
-            try {
-              const result = await response.json();
-              console.log("Resultado JSON do servidor:", result);
-              if (result.status === "sucesso") {
-                showStatus(
-                  "Formulário enviado com sucesso! Entraremos em contato em breve.",
-                  "success"
-                );
-                formToGoogleSheets.reset();
-              } else {
-                showStatus(
-                  "Erro ao processar o formulário: " +
-                    (result.message || "Tente novamente mais tarde."),
-                  "error"
-                );
-              }
-            } catch (jsonError) {
-              console.warn(
-                "Não foi possível parsear a resposta como JSON, mas a requisição foi OK (status " +
-                  response.status +
-                  "). Assumindo sucesso do lado do servidor porque os dados estão sendo inseridos.",
-                jsonError
-              );
-              showStatus(
-                "Formulário enviado! Entraremos em contato em breve.",
-                "success"
-              );
-              formToGoogleSheets.reset();
-            }
-          } else {
-            // Se a resposta HTTP não for OK (ex: erro 4xx, 5xx do Apps Script ou da rede)
-            const errorText = await response.text(); // Pega o texto do erro
-            showStatus(
-              `Erro no envio (${response.status}). Por favor, tente novamente. Detalhes: ${errorText}`,
-              "error"
-            );
-            console.error(
-              "Erro HTTP:",
-              response.status,
-              response.statusText,
-              errorText
-            );
-          }
+          showStatusPostNoCors(
+            "Formulário enviado! Verificaremos os dados na planilha. Em breve retornaremos.",
+            "success"
+          );
+          formPostNoCors.reset();
         } catch (error) {
-          // Erros de rede ou outros problemas com o fetch em si
-          showStatus(
-            "Erro de conexão ao enviar. Verifique sua internet e tente novamente.",
+          showStatusPostNoCors(
+            "Erro ao enviar o formulário. Verifique sua conexão e tente novamente. Detalhes: " +
+              error.message,
             "error"
           );
-          console.error("Fetch Error:", error);
+          console.error("Fetch Error (POST no-cors):", error);
         } finally {
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalButtonText;
+          submitButtonPostNoCors.disabled = false;
+          submitButtonPostNoCors.innerHTML = originalButtonText;
         }
       });
-
-      function showStatus(message, type) {
-        statusMessageElement.textContent = message;
-        statusMessageElement.className = "status-message " + type;
-        statusMessageElement.style.display = "block";
-      }
     </script>
   </body>
 </html>
