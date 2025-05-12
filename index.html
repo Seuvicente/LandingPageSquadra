@@ -12,10 +12,26 @@
     <title>Squadra Imobiliária - Cuidamos bem do seu imóvel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      rel="stylesheet"
+      rel="preload"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    /></noscript>
+    <link
+      rel="preload"
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    /></noscript>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,12 +39,22 @@
       rel="stylesheet"
     />
     <link
-      rel="stylesheet"
+      rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
       integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    /></noscript>
     <style>
       html {
         scroll-behavior: smooth;
@@ -202,10 +228,12 @@
       >
         <a href="#" class="block">
           <img
-            src="./imagens/logoSquadraBgTrasnparent-removebg-preview.png"
+            src="./imagens/logoSquadraBgTrasnparent.webp"
             alt="Logo Squadra Imobiliária"
             class="h-24 w-auto"
             onerror="this.onerror=null; this.src='https://placehold.co/150x50/1A202C/ffffff?text=Squadra+Logo';"
+            width="500"
+            height="500"
           />
         </a>
 
@@ -320,8 +348,8 @@
             alt="Colaboradora da Squadra Imobiliária acenando"
             class="rounded-lg shadow-lg w-full h-auto max-w-md mx-auto md:max-w-full"
             onerror="this.onerror=null; this.src='https://placehold.co/600x400/2EC4B6/ffffff?text=Squadra+Atendimento';"
-            width="922px"
-            height="615px"
+            width="922"
+            height="615"
           />
         </div>
       </div>
@@ -407,6 +435,8 @@
                   alt="Flat no Meireles para locação"
                   class="w-full h-full object-cover"
                   onerror="this.onerror=null; this.src='https://placehold.co/600x384/2EC4B6/ffffff?text=Flat+Meireles';"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
                 />
               </a>
@@ -423,8 +453,8 @@
                   alt="Galpão Comercial para locação"
                   class="w-full h-full object-cover"
                   onerror="this.onerror=null; this.src='https://placehold.co/600x384/2EC4B6/ffffff?text=Galpão+Comercial';"
-                  width="1080px"
-                  height="1920px"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
                 />
               </a>
@@ -441,6 +471,8 @@
                   alt="Casa na Cidade Alpha para venda"
                   class="w-full h-full object-cover"
                   onerror="this.onerror=null; this.src='https://placehold.co/600x384/2EC4B6/ffffff?text=Casa+Alpha';"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
                 />
               </a>
@@ -461,6 +493,8 @@
               class="rounded-lg shadow-lg w-full h-auto max-w-md mx-auto md:max-w-full"
               onerror="this.onerror=null; this.src='https://placehold.co/600x400/2EC4B6/ffffff?text=Equipe+Squadra';"
               loading="lazy"
+              width="922"
+              height="615"
             />
           </div>
           <div
@@ -785,10 +819,12 @@
       <div class="container mx-auto px-6 text-center">
         <div class="h-24 w-auto mx-auto mb-4">
           <img
-            src="./imagens/logoSquadraBgTrasnparent-removebg-preview.png"
+            src="./imagens/logoSquadraBgTrasnparent.webp"
             alt="Logo Squadra Imobiliária Rodapé"
             class="h-full w-auto mx-auto"
             onerror="this.onerror=null; this.src='https://placehold.co/120x40/1A202C/ffffff?text=Squadra';"
+            width="500"
+            height="500"
           />
         </div>
         <p>
