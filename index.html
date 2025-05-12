@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Squadra Imobiliária: Administração de imóveis em Fortaleza com segurança, rapidez e tecnologia. Deixe seu patrimônio em boas mãos e alugue mais rápido!"
+    />
+    <link rel="icon" href="./imagens/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="./imagens/apple-touch-icon.png" />
     <title>Squadra Imobiliária - Cuidamos bem do seu imóvel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -24,26 +30,25 @@
       referrerpolicy="no-referrer"
     />
     <style>
-      /* Estilos Adicionais */
       html {
-        scroll-behavior: smooth; /* Habilita rolagem suave globalmente */
+        scroll-behavior: smooth;
       }
       body {
         font-family: "Inter", sans-serif;
-        overflow-x: hidden; /* Prevenir scroll horizontal causado por AOS */
+        overflow-x: hidden;
       }
-      /* Estilo para esconder a barra de rolagem enquanto o menu mobile está aberto */
+
       .body-no-scroll {
         overflow: hidden;
       }
-      /* Cores da Marca (Aproximadas) */
+
       :root {
-        --brand-dark: #1a202c; /* Cinza muito escuro (quase preto) */
-        --brand-teal: #2ec4b6; /* Verde-água/Turquesa do logo */
-        --brand-light: #ffffff; /* Branco */
-        --brand-gray: #f7fafc; /* Cinza claro para fundos alternativos */
+        --brand-dark: #1a202c;
+        --brand-teal: #2ec4b6;
+        --brand-light: #ffffff;
+        --brand-gray: #f7fafc;
       }
-      /* Aplicando cores como classes utilitárias */
+
       .bg-brand-dark {
         background-color: var(--brand-dark);
       }
@@ -70,15 +75,14 @@
       }
       .hover\:bg-brand-teal-dark:hover {
         background-color: #25a197;
-      } /* Tom mais escuro para hover */
+      }
       .hover\:text-brand-teal:hover {
         color: var(--brand-teal);
       }
       .hover\:text-gray-300:hover {
         color: #d1d5db;
-      } /* Cinza claro para hover em fundo escuro */
+      }
 
-      /* Estilos para os botões de navegação do Swiper */
       .swiper-button-next,
       .swiper-button-prev {
         color: var(--brand-teal);
@@ -97,7 +101,7 @@
         font-size: 1.25rem;
         font-weight: bold;
       }
-      /* Ajuste para posicionar botões fora do container principal em telas maiores */
+
       @media (min-width: 768px) {
         .swiper-button-next {
           right: -15px;
@@ -106,11 +110,11 @@
           left: -15px;
         }
       }
-      /* Garante que o carrossel não ultrapasse a largura do container */
+
       .swiper-container {
         width: 100%;
         overflow: hidden;
-        padding-left: 5px; /* Pequeno padding para não cortar sombras ou bordas dos slides */
+        padding-left: 5px;
         padding-right: 5px;
       }
       .swiper-slide img {
@@ -127,7 +131,6 @@
         height: 100%;
       }
 
-      /* Estilos para a seção de depoimentos (Refinado) */
       .testimonial-card {
         background-color: var(--brand-light);
         padding: 1.5rem;
@@ -159,7 +162,6 @@
         color: #718096;
       }
 
-      /* Estilos para a Seção de Números */
       .stat-number {
         font-size: 3rem;
         font-weight: 800;
@@ -172,7 +174,6 @@
         color: #a0aec0;
       }
 
-      /* Estilos para mensagens de status do formulário */
       .status-message {
         margin-top: 1rem;
         padding: 0.75rem;
@@ -759,7 +760,7 @@
               <p class="text-lg">Rua Osvaldo Cruz, 01, Sala 1701</p>
               <p class="text-lg mb-4">Meireles, Fortaleza - CE</p>
               <a
-                href="https://www.google.com/maps/place/Av.+Santos+Dumont,+1+-+Sala+1701+-+Aldeota,+Fortaleza+-+CE,+60150-160"
+                href="https://www.google.com/maps/search/?api=1&query=Rua+Osvaldo+Cruz+01+Sala+1701+Meireles+Fortaleza+CE"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="bg-brand-light hover:bg-gray-200 text-brand-dark font-bold py-2 px-6 rounded-lg transition duration-300 inline-block"
@@ -859,26 +860,25 @@
         if (typeof Swiper !== "undefined") {
           const swiper = new Swiper(".swiper-container", {
             loop: true,
-            slidesPerView: 1.2, // Base para mobile
+            slidesPerView: 1.2,
             spaceBetween: 15,
-            centeredSlides: true, // Centraliza o slide ativo em visualizações menores
+            centeredSlides: true,
             grabCursor: true,
             navigation: {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             },
             breakpoints: {
-              // Quando a largura da janela for >= 640px (sm no Tailwind)
               640: {
-                slidesPerView: 2.2, // Mostra 2 slides e um pouco do terceiro
+                slidesPerView: 2.2,
                 spaceBetween: 20,
-                centeredSlides: true, // Mantém centralizado para melhor visualização com 3 itens
+                centeredSlides: true,
               },
-              // Quando a largura da janela for >= 1024px (lg no Tailwind)
+
               1024: {
-                slidesPerView: 3, // Mostra 3 slides completos
+                slidesPerView: 3,
                 spaceBetween: 30,
-                centeredSlides: false, // Não precisa centralizar se todos os 3 estão visíveis
+                centeredSlides: false,
               },
             },
           });
@@ -931,8 +931,6 @@
           mensagem: formPostNoCors.mensagem.value,
         };
 
-        // ***** IMPORTANTE: SUBSTITUA COM O URL REAL DA SUA IMPLANTAÇÃO DO GOOGLE APPS SCRIPT *****
-        // Este é o URL que você indicou que funcionava para gravar os dados com 'no-cors'
         const googleScriptURL =
           "https://script.google.com/macros/s/AKfycbyNrSoKqMz0M42FUw6fdIyY_7CO8CeHGHdOb00t7vjafq_CcSASUloI7oIOl2sufPQ_/exec";
 
@@ -949,10 +947,7 @@
             body: JSON.stringify(data),
           });
 
-          showStatusPostNoCors(
-            "Formulário enviado! Verificaremos os dados na planilha. Em breve retornaremos.",
-            "success"
-          );
+          showStatusPostNoCors("Formulário enviado!", "success");
           formPostNoCors.reset();
         } catch (error) {
           showStatusPostNoCors(
